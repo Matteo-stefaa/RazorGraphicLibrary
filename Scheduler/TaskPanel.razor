@@ -1,0 +1,36 @@
+﻿@using RazorGraphicLibrary.Scheduler.Model;
+@using MudBlazor;
+
+<div style="@($"padding: 0px 3px 0px 3px; {Style}")">
+    <MudPaper Elevation="5" Class="task-panel" >
+        <MudText>@Task.TaskName</MudText>
+    </MudPaper>
+</div>
+
+<style>
+    .task-panel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0px 3px 0px 3px;
+        height: 60px;
+    }
+
+    .task-panel-empty{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0px 3px 0px 3px;
+        height: 60px;
+        background-color: #ffdcdc;
+    }
+</style>
+
+@code {
+    [Parameter] public SchedulerTask Task { get; set; }
+    [Parameter] public Action MoveBack { get; set; }
+    [Parameter] public Action MoveForward { get; set; }
+    [Parameter] public string Style { get; set; } = "";
+}

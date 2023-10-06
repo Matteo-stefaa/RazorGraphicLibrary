@@ -1,0 +1,136 @@
+﻿@using MudBlazor
+@using RazorGraphicLibrary.Scheduler.Model;
+
+<div>
+    <MudGrid>
+        <MudItem xs="1">
+            <MudGrid>
+                @foreach (string group in getGroups())
+                {
+                    <MudItem xs="12">
+                        <div style="display: flex; align-items: center; justify-content: center; height: 60px;">
+                            <MudText><b>@group</b></MudText>
+                        </div>
+                        <MudDivider />
+                    </MudItem>
+                }
+                <MudItem xs="12">
+                    <div style="display: flex; align-items: center; justify-content: center; height: 40px;"></div>
+                </MudItem>
+            </MudGrid>
+        </MudItem>
+        <MudItem xs="11" Style="overflow-x: scroll; position: relative">
+            <MudGrid Style="position: absolute;">
+                @foreach (string group in getGroups())
+                {
+                    <MudItem xs="12" Style="display: -webkit-inline-box;">
+                        @foreach (DateTime dt in GetTicks(Tasks, group))
+                        {
+                            @if (GetTicks(Tasks, group).ToList().IndexOf(dt) < GetTicks(Tasks, group).Count() - 1)
+                            {
+                                @if (Tasks.ToList().Find(t => t.TaskGroup == group && t.DateStart == dt) != null)
+                                {
+                                    <TaskPanel Task="@Tasks.ToList().Find(t => t.TaskGroup == group && t.DateStart == dt)" Style="@($"width: {getTaskWidth(Tasks.ToList().Find(t => t.TaskGroup == group && t.DateStart == dt))}%;")" />
+                                }
+                                else
+                                {
+                                    <div style="@($"width:{getTaskWidth(GetTicks(Tasks, group).ToArray()[GetTicks(Tasks, group).ToList().IndexOf(dt) + 1].Subtract(dt).TotalMinutes)}%; padding: 0px 3px 0px 3px;")">
+                                        <MudPaper Elevation="5" Class="task-panel-empty">
+                                            @dt.ToString("HH:mm") - @GetTicks(Tasks, group).ToList()[GetTicks(Tasks, group).ToList().IndexOf(dt) + 1].ToString("HH:mm")
+                                        </MudPaper>
+                                    </div>
+                                }
+                            }
+                        }
+                    </MudItem>
+                }
+                <MudItem xs="12" Style="display: -webkit-inline-box;">
+                    @foreach (DateTime dt in _tiks)
+                    {
+                        @if (_tiks.IndexOf(dt) < _tiks.Count - 1)
+                        {
+                            <div style="@($"width:{getTaskWidth(_tiks[_tiks.IndexOf(dt) + 1].Subtract(dt).TotalMinutes)}%; padding: 0px 3px 0px 3px;")">
+                                <MudPaper Elevation="5" Class="task-panel" Style="text-align: center; height: 30px; background-color: #ecfff5;">
+                                    <MudButton OnClick="() => tickSelected(_tiks.IndexOf(dt))" Size="Size.Small">
+                                        @_tiks[_tiks.IndexOf(dt) + 1].Subtract(dt).Hours.ToString("00"):@_tiks[_tiks.IndexOf(dt) + 1].Subtract(dt).Minutes.ToString("00")
+                                    </MudButton>
+                                </MudPaper>
+                            </div>
+                        }
+                    }
+                </MudItem>
+            </MudGrid>
+            @if (_selectedIndexTiks >= 0 && _selectedIndexTiks < _tiks.Count - 1)
+            {
+                <div id="div-selected-tick"
+                     style="@($"width: {getTaskWidth(_tiks[_selectedIndexTiks + 1].Subtract(_tiks[_selectedIndexTiks]).TotalMinutes)}%; margin-left: {getTaskWidth(_tiks[_selectedIndexTiks].Subtract(_tiks.First()).TotalMinutes)}%;")"></div>
+            }
+        </MudItem>
+    </MudGrid>
+</div>
+
+<style>
+    #spectre {
+        background-color: transparent;
+        height: 98%;
+        position: absolute;
+        top: 0px;
+        opacity: 0.2;
+    }
+
+    #div-selected-tick {
+        background-color: #a6a0a0;
+        height: 98%;
+        position: absolute;
+        top: 0px;
+        opacity: 0.2;
+    }
+</style>
+
+@code {
+    [Parameter] public IEnumerable<SchedulerTask> Tasks { get; set; }
+    [Parameter] public double Scale { get; set; } = 1.00; // 1 minute = 0.069vw
+    [Parameter] public Action<DateTime, DateTime> OnSelectedInterval { get; set; }
+
+    private DateTime _start = DateTime.Now;
+    private DateTime _end = DateTime.Now;
+    private List<DateTime> _tiks = new List<DateTime>();
+    private int _selectedIndexTiks = 0;
+
+    // override
+    protected override Task OnInitializedAsync()
+    {
+        _start = Tasks.Select(t => t.DateStart).Min();
+        _end = Tasks.Select(t => t.DateEnd).Max();
+        _tiks = GetTicks(Tasks).ToList();
+
+        return base.OnInitializedAsync();
+    }
+
+    // private
+    private void tickSelected(int index)
+    {
+        _selectedIndexTiks = index;
+        OnSelectedInterval?.Invoke(_tiks[_selectedIndexTiks], _tiks[_selectedIndexTiks + 1]);
+    }
+    private IEnumerable<string> getGroups()
+    {
+        if (Tasks == null || Tasks.Count() == 0) { return new string[] { }; }
+        return Tasks.ToList().Select(t => t.TaskGroup).Distinct();
+    }
+    private string getTaskWidth(SchedulerTask item)
+    {
+        return getTaskWidth(item.DateEnd.Subtract(item.DateStart).TotalMinutes);
+    }
+    private string getTaskWidth(double minutes)
+    {
+        return (minutes * (Scale * (100.00 / 1440.00))).ToString("0.00").Replace(",", ".");
+    }
+    private IEnumerable<DateTime> GetTicks(IEnumerable<SchedulerTask> tasks, string groupName = null)
+    {
+        var starts = tasks.ToList().FindAll(t => groupName == null || t.TaskGroup == groupName || t.DateStart.Equals(_start)).Select(t => t.DateStart);
+        var ends = tasks.ToList().FindAll(t => groupName == null || t.TaskGroup == groupName || t.DateEnd.Equals(_end)).Select(t => t.DateEnd);
+
+        return starts.Union(ends).Distinct().OrderBy(d => d);
+    }
+}
