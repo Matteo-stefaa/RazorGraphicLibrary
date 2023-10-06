@@ -114,7 +114,10 @@
 
         DateTime start = _tiks[_selectedIndexTiks];
         DateTime end = _tiks[_selectedIndexTiks + 1];
-        var tsks = Tasks.ToList().FindAll(t => );
+        var tsks = Tasks.ToList().FindAll(t => 
+            t.DateStart == start
+            || t.DateStart < start
+        );
 
         OnSelectedInterval?.Invoke(start, end, tsks);
     }
