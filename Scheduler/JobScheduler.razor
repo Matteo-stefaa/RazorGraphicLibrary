@@ -90,7 +90,7 @@
 @code {
     [Parameter] public IEnumerable<SchedulerTask> Tasks { get; set; }
     [Parameter] public double Scale { get; set; } = 1.00; // 1 minute = 0.069vw
-    [Parameter] public Action<DateTime, DateTime> OnSelectedInterval { get; set; }
+    [Parameter] public Action<DateTime, DateTime, IEnumerable<SchedulerTask>> OnSelectedInterval { get; set; }
 
     private DateTime _start = DateTime.Now;
     private DateTime _end = DateTime.Now;
@@ -111,7 +111,12 @@
     private void tickSelected(int index)
     {
         _selectedIndexTiks = index;
-        OnSelectedInterval?.Invoke(_tiks[_selectedIndexTiks], _tiks[_selectedIndexTiks + 1]);
+
+        DateTime start = _tiks[_selectedIndexTiks];
+        DateTime end = _tiks[_selectedIndexTiks + 1];
+        var tsks = Tasks.ToList().FindAll(t => );
+
+        OnSelectedInterval?.Invoke(start, end, tsks);
     }
     private IEnumerable<string> getGroups()
     {
