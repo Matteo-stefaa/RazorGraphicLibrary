@@ -30,13 +30,15 @@
                             {
                                 @if (Tasks.ToList().Find(t => t.TaskGroup == group && t.DateStart == dt) != null)
                                 {
-                                    <TaskPanel Task="@Tasks.ToList().Find(t => t.TaskGroup == group && t.DateStart == dt)" Style="@($"width: {getTaskWidth(Tasks.ToList().Find(t => t.TaskGroup == group && t.DateStart == dt))}%;")" />
+                                    <TaskPanel Task="@Tasks.ToList().Find(t => t.TaskGroup == group && t.DateStart == dt)"
+                                               Style="@($"width: {getTaskWidth(Tasks.ToList().Find(t => t.TaskGroup == group && t.DateStart == dt))}%;")"
+                                               Color="@(_markedTasks.Contains(Tasks.ToList().Find(t => t.TaskGroup == group && t.DateStart == dt)) ? "#e6f4ff" : null)" />
                                 }
                                 else
                                 {
                                     <div style="@($"width:{getTaskWidth(GetTicks(Tasks, group).ToArray()[GetTicks(Tasks, group).ToList().IndexOf(dt) + 1].Subtract(dt).TotalMinutes)}%; padding: 0px 3px 0px 3px;")">
                                         <MudPaper Elevation="5" Class="task-panel-empty">
-                                            @dt.ToString("HH:mm") - @GetTicks(Tasks, group).ToList()[GetTicks(Tasks, group).ToList().IndexOf(dt) + 1].ToString("HH:mm")
+                                            <b>@dt.ToString("HH:mm") - @GetTicks(Tasks, group).ToList()[GetTicks(Tasks, group).ToList().IndexOf(dt) + 1].ToString("HH:mm")</b>
                                         </MudPaper>
                                     </div>
                                 }
@@ -50,10 +52,10 @@
                         @if (_tiks.IndexOf(dt) < _tiks.Count - 1)
                         {
                             <div style="@($"width:{getTaskWidth(_tiks[_tiks.IndexOf(dt) + 1].Subtract(dt).TotalMinutes)}%; padding: 0px 3px 0px 3px;")">
-                                <MudPaper Elevation="5" Class="task-panel" Style="text-align: center; height: 30px; background-color: #ecfff5;">
-                                    <MudButton OnClick="() => tickSelected(_tiks.IndexOf(dt))" Size="Size.Small">
-                                        @_tiks[_tiks.IndexOf(dt) + 1].Subtract(dt).Hours.ToString("00"):@_tiks[_tiks.IndexOf(dt) + 1].Subtract(dt).Minutes.ToString("00")
-                                    </MudButton>
+                                <MudPaper Elevation="5"
+                                          Class="task-panel div-tick" 
+                                    onclick="@(() => tickSelected(_tiks.IndexOf(dt)))">
+                                    <b>@_tiks[_tiks.IndexOf(dt) + 1].Subtract(dt).Hours.ToString("00"):@_tiks[_tiks.IndexOf(dt) + 1].Subtract(dt).Minutes.ToString("00")</b>
                                 </MudPaper>
                             </div>
                         }
@@ -70,12 +72,15 @@
 </div>
 
 <style>
-    #spectre {
-        background-color: transparent;
-        height: 98%;
-        position: absolute;
-        top: 0px;
-        opacity: 0.2;
+    .div-tick{
+        text-align: center;
+        height: 30px;
+        background-color: #ecfff5;
+        cursor: pointer;
+    }
+
+    .div-tick:hover {
+        background-color: #c0dccd;
     }
 
     #div-selected-tick {
@@ -96,6 +101,7 @@
     private DateTime _end = DateTime.Now;
     private List<DateTime> _tiks = new List<DateTime>();
     private int _selectedIndexTiks = 0;
+    private List<SchedulerTask> _markedTasks = new List<SchedulerTask>();
 
     // override
     protected override Task OnInitializedAsync()
@@ -103,6 +109,8 @@
         _start = Tasks.Select(t => t.DateStart).Min();
         _end = Tasks.Select(t => t.DateEnd).Max();
         _tiks = GetTicks(Tasks).ToList();
+
+        tickSelected(_selectedIndexTiks);
 
         return base.OnInitializedAsync();
     }
@@ -114,10 +122,13 @@
 
         DateTime start = _tiks[_selectedIndexTiks];
         DateTime end = _tiks[_selectedIndexTiks + 1];
-        var tsks = Tasks.ToList().FindAll(t => 
-            t.DateStart == start
-            || t.DateStart < start
+        var tsks = Tasks.ToList().FindAll(t =>
+            (t.DateStart >= start && t.DateStart < end)
+            || (t.DateEnd > start && t.DateStart < end)
         );
+
+        _markedTasks = tsks.ToList();
+        StateHasChanged();
 
         OnSelectedInterval?.Invoke(start, end, tsks);
     }
