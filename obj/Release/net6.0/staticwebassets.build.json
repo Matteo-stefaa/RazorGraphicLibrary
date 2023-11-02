@@ -1,0 +1,46 @@
+{
+  "Version": 1,
+  "Hash": "iSCALx5xEKzS+QJDkS+2MDHAqarSgpM+PtY24YKMgfc=",
+  "Source": "RazorGraphicLibrary",
+  "BasePath": "_content/RazorGraphicLibrary",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\matteo.stefani\\.nuget\\packages\\mudblazor\\6.10.0\\staticwebassets\\MudBlazor.min.css",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\matteo.stefani\\.nuget\\packages\\mudblazor\\6.10.0\\staticwebassets\\",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\matteo.stefani\\.nuget\\packages\\mudblazor\\6.10.0\\staticwebassets\\MudBlazor.min.css"
+    },
+    {
+      "Identity": "C:\\Users\\matteo.stefani\\.nuget\\packages\\mudblazor\\6.10.0\\staticwebassets\\MudBlazor.min.js",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\matteo.stefani\\.nuget\\packages\\mudblazor\\6.10.0\\staticwebassets\\",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\matteo.stefani\\.nuget\\packages\\mudblazor\\6.10.0\\staticwebassets\\MudBlazor.min.js"
+    }
+  ]
+}
