@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\matteo.stefani\DotNetJob\RazorGraphicLibrary
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/matteo.stefani/DotNetJob/RazorGraphicLibrary/Calendar/Calendar.razor]
+build_metadata.AdditionalFiles.TargetPath = Q2FsZW5kYXJcQ2FsZW5kYXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/matteo.stefani/DotNetJob/RazorGraphicLibrary/GenericComponents/DialogEditText.razor]
 build_metadata.AdditionalFiles.TargetPath = R2VuZXJpY0NvbXBvbmVudHNcRGlhbG9nRWRpdFRleHQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

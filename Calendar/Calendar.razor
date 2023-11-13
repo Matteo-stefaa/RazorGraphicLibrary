@@ -1,0 +1,231 @@
+﻿@using RazorGraphicLibrary.Calendar.Models;
+<div class="blazor-calendar">
+    @if (Showheader)
+    {
+        <div class="calendar-header">
+            <p><b>@GetFocusMonth().ToUpper()</b></p>
+            <div>
+                <button onclick="@(() => ChangeFocus(Focus.AddMonths(-1)))">@("<")</button>
+                <button onclick="@(() => ChangeFocus(DateTime.Today))">@("OGGI")</button>
+                <button onclick ="@(() => ChangeFocus(Focus.AddMonths(1)))">@(">")</button>
+            </div>
+        </div>
+    }
+    <div class="days-container">
+        <table>
+            <tr>
+                <th>LUNEDÌ</th>
+                <th>MARTEDÌ</th>
+                <th>MERCOLEDÌ</th>
+                <th>GIOVEDÌ</th>
+                <th>VENERDÌ</th>
+                <th>SABATO</th>
+                <th>DOMENICA</th>
+            </tr>
+            @foreach (var kv in _dctWeekDate)
+            {
+                <tr>
+                    @foreach (DateTime dt in kv.Value)
+                    {
+                        <td>
+                            <div class="div-calendar-day @(dt.Equals(Focus) ? "day-focus" : "") @(dt.Month != Focus.Month ? "striped" : "")"
+                                 onclick="@(() => HandleDayClick(dt))">
+                                <div>
+                                    @(dt.Day)
+                                </div>
+                                <div class="events-container">
+                                    @foreach (Event ev in EventByDay(dt.Year, dt.Month, dt.Day))
+                                    {
+                                        <div class="event-div">@ev.Title</div>
+                                    }
+                                </div>
+                            </div>
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<style scoped>
+    .blazor-calendar {
+        padding: 10px;
+    }
+
+    .blazor-calendar > .calendar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .days-container > table {
+        width: 100%;
+    }
+
+    th {
+        width: 14%;
+        margin: 2px;
+        padding: 5px 10px 5px 10px;
+        text-align: center;
+        background-color: #2f3471;
+        color: white;
+    }
+
+    .div-calendar-day {
+        height: 90px;
+        margin: 2px;
+        padding: 5px;
+        overflow: hidden;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #af99f729;
+    }
+
+        .div-calendar-day.day-focus {
+            color: red !important;
+        }
+
+        .div-calendar-day.striped {
+            background: repeating-linear-gradient( 45deg, #ffffff, #ffffff 10px, #af99f729 10px, #af99f729 15px );
+        }
+
+        .div-calendar-day:hover {
+            color: seagreen;
+            animation: 0.3s in-out-clickable forwards;
+        }
+
+    @@keyframes in-out-clickable {
+        0% {
+            transform: scale(1);
+        }
+
+        100% {
+            transform: scale(1.02);
+        }
+    }
+
+    .events-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .events-container > .event-div {
+            border-radius: 5px;
+            padding: 2px 5px 2px 5px;
+            font-size: small;
+            color: white;
+            background-color: green;
+        }
+
+</style>
+
+@code {
+    [Parameter] public DateTime Focus { get; set; } = DateTime.Now;
+    [Parameter] public List<Event> Events { get; set; } = new List<Event>();
+    [Parameter] public Action<IEnumerable<Event>> OnDayClick { get; set; }
+    [Parameter] public bool Showheader { get; set; } = true;
+
+    private Dictionary<int, List<DateTime>> _dctWeekDate = new Dictionary<int, List<DateTime>>();
+
+    // override
+    protected override Task OnInitializedAsync()
+    {
+        Events = new List<Event>();
+        Events.Add(new Event()
+            {
+                DateTime = DateTime.Now.AddDays(1),
+                Title = "EVENTO 1"
+            });
+        Events.Add(new Event()
+            {
+                DateTime = DateTime.Now.AddDays(1),
+                Title = "EVENTO 2"
+            });
+        Events.Add(new Event()
+            {
+                DateTime = DateTime.Now.AddDays(1),
+                Title = "EVENTO 3"
+            });
+        ChangeFocus(Focus);
+        return base.OnInitializedAsync();
+    }
+
+    // public
+    public void ChangeFocus(DateTime newFocus)
+    {
+        Focus = newFocus;
+        recalcMatrix();
+        StateHasChanged();
+    }
+    public void ChangeFocus(int days)
+    {
+        Console.WriteLine(days);
+        ChangeFocus(MonthFirst().AddDays(days));
+    }
+
+    // private
+    private void recalcMatrix()
+    {
+        _dctWeekDate = new Dictionary<int, List<DateTime>>();
+        int week = 0;
+        for (int dd = 1 - DaysBefore(); dd <= DateTime.DaysInMonth(Focus.Year, Focus.Month); dd += 7)
+        {
+            List<DateTime> dts = new List<DateTime>();
+            for (int i = 0; i < 7; i++)
+            {
+                dts.Add(MonthFirst().AddDays(dd + i - 1));
+            }
+            _dctWeekDate.Add(week++, dts);
+        }
+    }
+    private IEnumerable<Event> EventByDay(int year, int month, int day)
+    {
+        return Events.FindAll(e => e.DateTime.Year == year && e.DateTime.Month == month && e.DateTime.Day == day);
+    }
+    private string GetFocusMonth()
+    {
+        switch (Focus.Month)
+        {
+            case 1: return "gennaio";
+            case 2: return "febbraio";
+            case 3: return "marzo";
+            case 4: return "aprile";
+            case 5: return "maggio";
+            case 6: return "giugno";
+            case 7: return "luglio";
+            case 8: return "agosto";
+            case 9: return "settembre";
+            case 10: return "ottobre";
+            case 11: return "novembre";
+            case 12: return "dicembre";
+        }
+
+        return string.Empty;
+    }
+    private int DaysBefore()
+    {
+        switch (MonthFirst().DayOfWeek)
+        {
+            case DayOfWeek.Monday: return 0;
+            case DayOfWeek.Tuesday: return 1;
+            case DayOfWeek.Wednesday: return 2;
+            case DayOfWeek.Thursday: return 3;
+            case DayOfWeek.Friday: return 4;
+            case DayOfWeek.Saturday: return 5;
+            case DayOfWeek.Sunday: return 6;
+        }
+        return 0;
+    }
+    private DateTime MonthFirst()
+    {
+        return Focus.AddDays(-Focus.Day + 1);
+    }
+
+    // events
+    private void HandleDayClick(DateTime day)
+    {
+        ChangeFocus(day);
+        OnDayClick?.Invoke(EventByDay(day.Year, day.Month, day.Day));
+    }
+}
