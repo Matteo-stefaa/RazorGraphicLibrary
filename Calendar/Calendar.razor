@@ -66,26 +66,27 @@
         padding: 10px;
     }
 
-        .blazor-calendar > .calendar-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+    .blazor-calendar > .calendar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
     .days-container > table {
         width: 100%;
     }
 
-        .days-container > table > tr > th {
-            width: 14%;
-            margin: 2px;
-            padding: 5px 10px 5px 10px;
-            text-align: center;
-            background-color: #2f3471;
-            color: white;
-        }
+    .days-container > table > tr > th {
+        width: 14%;
+        margin: 2px;
+        padding: 5px 10px 5px 10px;
+        text-align: center;
+        background-color: #2f3471;
+        color: white;
+    }
 
     .div-calendar-day {
+        position: relative;
         height: 90px;
         margin: 2px;
         padding: 5px;
@@ -119,6 +120,7 @@
     }
 
     .events-container {
+        position: absolute;
         display: flex;
         flex-direction: column;
     }
@@ -134,12 +136,21 @@
 </style>
 
 @code {
-    [Parameter] public DateTime Focus { get; set; } = DateTime.Now;
+    [Parameter] public DateTime Focus
+    {
+        get => _focus;
+        set
+        {
+            _focus = value;
+            recalcMatrix();
+        }
+    }
     [Parameter] public List<Event> Events { get; set; } = new List<Event>();
     [Parameter] public Action<DateTime, IEnumerable<Event>> OnDayClick { get; set; }
     [Parameter] public bool Showheader { get; set; } = true;
     [Parameter] public bool DaysHeaderReduced { get; set; } = false;
 
+    private DateTime _focus = DateTime.Now;
     private Dictionary<int, List<DateTime>> _dctWeekDate = new Dictionary<int, List<DateTime>>();
 
     // override
