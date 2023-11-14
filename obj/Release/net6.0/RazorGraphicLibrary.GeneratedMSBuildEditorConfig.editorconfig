@@ -19,19 +19,3 @@ build_property._RazorSourceGeneratorDebug =
 [C:/Users/matteo.stefani/DotNetJob/RazorGraphicLibrary/Calendar/Calendar.razor]
 build_metadata.AdditionalFiles.TargetPath = Q2FsZW5kYXJcQ2FsZW5kYXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/matteo.stefani/DotNetJob/RazorGraphicLibrary/GenericComponents/DialogEditText.razor]
-build_metadata.AdditionalFiles.TargetPath = R2VuZXJpY0NvbXBvbmVudHNcRGlhbG9nRWRpdFRleHQucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/matteo.stefani/DotNetJob/RazorGraphicLibrary/GenericComponents/Loader.razor]
-build_metadata.AdditionalFiles.TargetPath = R2VuZXJpY0NvbXBvbmVudHNcTG9hZGVyLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/matteo.stefani/DotNetJob/RazorGraphicLibrary/Scheduler/JobScheduler.razor]
-build_metadata.AdditionalFiles.TargetPath = U2NoZWR1bGVyXEpvYlNjaGVkdWxlci5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/matteo.stefani/DotNetJob/RazorGraphicLibrary/Scheduler/TaskPanel.razor]
-build_metadata.AdditionalFiles.TargetPath = U2NoZWR1bGVyXFRhc2tQYW5lbC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 

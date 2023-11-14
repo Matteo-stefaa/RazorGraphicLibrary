@@ -2,7 +2,6 @@ C:\Users\matteo.stefani\DotNetJob\RazorGraphicLibrary\bin\Release\net6.0\RazorGr
 C:\Users\matteo.stefani\DotNetJob\RazorGraphicLibrary\bin\Release\net6.0\RazorGraphicLibrary.deps.json
 C:\Users\matteo.stefani\DotNetJob\RazorGraphicLibrary\bin\Release\net6.0\RazorGraphicLibrary.dll
 C:\Users\matteo.stefani\DotNetJob\RazorGraphicLibrary\bin\Release\net6.0\RazorGraphicLibrary.pdb
-C:\Users\matteo.stefani\DotNetJob\RazorGraphicLibrary\obj\Release\net6.0\RazorGraphicLibrary.csproj.AssemblyReference.cache
 C:\Users\matteo.stefani\DotNetJob\RazorGraphicLibrary\obj\Release\net6.0\RazorGraphicLibrary.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\matteo.stefani\DotNetJob\RazorGraphicLibrary\obj\Release\net6.0\RazorGraphicLibrary.AssemblyInfoInputs.cache
 C:\Users\matteo.stefani\DotNetJob\RazorGraphicLibrary\obj\Release\net6.0\RazorGraphicLibrary.AssemblyInfo.cs

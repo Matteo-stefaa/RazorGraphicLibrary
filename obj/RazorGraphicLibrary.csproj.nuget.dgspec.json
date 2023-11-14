@@ -5,7 +5,7 @@
   },
   "projects": {
     "C:\\Users\\matteo.stefani\\DotNetJob\\RazorGraphicLibrary\\RazorGraphicLibrary.csproj": {
-      "version": "1.0.0",
+      "version": "1.0.0.2",
       "restore": {
         "projectUniqueName": "C:\\Users\\matteo.stefani\\DotNetJob\\RazorGraphicLibrary\\RazorGraphicLibrary.csproj",
         "projectName": "RazorGraphicLibrary",
@@ -44,12 +44,6 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "dependencies": {
-            "MudBlazor": {
-              "target": "Package",
-              "version": "[6.10.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
