@@ -3,7 +3,7 @@
     @if (Showheader)
     {
         <div class="calendar-header">
-            <p><b>@GetFocusMonth().ToUpper()</b></p>
+            <p><b>@GetFocusMonth().ToUpper() @Focus.Year</b></p>
             <div>
                 <button onclick="@(() => ChangeFocus(Focus.AddMonths(-1)))">@("<")</button>
                 <button onclick="@(() => ChangeFocus(DateTime.Today))">@("OGGI")</button>
@@ -88,7 +88,6 @@
     .div-calendar-day {
         position: relative;
         height: 90px;
-        margin: 2px;
         padding: 5px;
         overflow: hidden;
         border-radius: 5px;
@@ -106,7 +105,7 @@
 
         .div-calendar-day:hover {
             color: seagreen;
-            animation: 0.3s in-out-clickable forwards;
+            animation: 0.2s in-out-clickable forwards;
         }
 
     @@keyframes in-out-clickable {
@@ -116,6 +115,8 @@
 
         100% {
             transform: scale(1.02);
+            box-shadow: 5px 5px 2px #dedede;
+            border: 0.5px black;
         }
     }
 
