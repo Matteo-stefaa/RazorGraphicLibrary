@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>RazorGraphicLibrary</id>
+    <version>1.0.0.4</version>
+    <authors>RazorGraphicLibrary</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="Microsoft.AspNetCore.Components" version="6.0.24" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\matteo.stefani\DotNetJob\RazorGraphicLibrary\bin\Release\net6.0\RazorGraphicLibrary.dll" target="lib\net6.0\RazorGraphicLibrary.dll" />
+  </files>
+</package>
