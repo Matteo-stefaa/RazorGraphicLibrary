@@ -4,6 +4,10 @@
 
 Available for Blazor (Server or WASM)
 
+## Examples
+
+![alt text](https://github.com/Matteo-stefaa/RazorGraphicLibrary/blob/main/Calendar/Images/img1.png?raw=true)
+
 ## Installation
 ```
 Install-Package RazorGraphicLibrary
@@ -12,5 +16,3 @@ or
 ```
 dotnet add package RazorGraphicLibrary
 ```
-
-## Examples
