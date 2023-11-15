@@ -12,3 +12,7 @@ or
 ```
 dotnet add package RazorGraphicLibrary
 ```
+
+## Components
+<b>Calendar</b>: 
+https://github.com/Matteo-stefaa/RazorGraphicLibrary/tree/main/Calendar
