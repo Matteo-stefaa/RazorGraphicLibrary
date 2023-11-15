@@ -4,7 +4,7 @@
 
 Available for Blazor (Server or WASM)
 
-## Installation
+## Installation:
 ```
 Install-Package RazorGraphicLibrary
 ```
@@ -13,6 +13,8 @@ or
 dotnet add package RazorGraphicLibrary
 ```
 
-## Components
-<b>Calendar</b>: 
-https://github.com/Matteo-stefaa/RazorGraphicLibrary/tree/main/Calendar
+## Components:
+
+### Calendar 
+
+[<iframe src="https://raw.githubusercontent.com/Matteo-stefaa/RazorGraphicLibrary/main/Calendar/README.md"></iframe>](https://raw.githubusercontent.com/Matteo-stefaa/RazorGraphicLibrary/main/Calendar)
