@@ -15,6 +15,5 @@ dotnet add package RazorGraphicLibrary
 
 ## Components:
 
-### Calendar 
-
-<iframe src="https://raw.githubusercontent.com/Matteo-stefaa/RazorGraphicLibrary/main/Calendar/README.md"></iframe>
+### [Calendar](https://github.com/Matteo-stefaa/RazorGraphicLibrary/tree/main/Calendar)
+![alt text](https://github.com/Matteo-stefaa/RazorGraphicLibrary/blob/main/Calendar/Images/img1.png?raw=true)
