@@ -32,14 +32,24 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\matteo.stefani\\DotNetJob\\zz - ScriptDiProva\\FCS\\SyncFCS14\\SyncFCS14\\SyncFCS14.csproj": {
+                "projectPath": "C:\\Users\\matteo.stefani\\DotNetJob\\zz - ScriptDiProva\\FCS\\SyncFCS14\\SyncFCS14\\SyncFCS14.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net6.0": {
@@ -47,7 +57,15 @@
           "dependencies": {
             "Microsoft.AspNetCore.Components": {
               "target": "Package",
-              "version": "[6.0.24, )"
+              "version": "[6.0.25, )"
+            },
+            "Microsoft.AspNetCore.Components.Web": {
+              "target": "Package",
+              "version": "[6.0.25, )"
+            },
+            "Microsoft.JSInterop": {
+              "target": "Package",
+              "version": "[6.0.25, )"
             }
           },
           "imports": [
@@ -66,8 +84,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "C:\\Users\\matteo.stefani\\DotNetJob\\zz - ScriptDiProva\\FCS\\SyncFCS14\\SyncFCS14\\SyncFCS14.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\matteo.stefani\\DotNetJob\\zz - ScriptDiProva\\FCS\\SyncFCS14\\SyncFCS14\\SyncFCS14.csproj",
+        "projectName": "SyncFCS14",
+        "projectPath": "C:\\Users\\matteo.stefani\\DotNetJob\\zz - ScriptDiProva\\FCS\\SyncFCS14\\SyncFCS14\\SyncFCS14.csproj",
+        "UsingMicrosoftNETSdk": false,
+        "frameworks": {
+          "net452": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net452": {}
       }
     }
   }

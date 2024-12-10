@@ -1,0 +1,217 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.JSInterop
+@using RazorGraphicLibrary._2DPlotter.Models
+
+@inject IJSRuntime IJSRuntime
+
+<div id="canvas-container">
+    <canvas onmousewheel="@((WheelEventArgs e) => Scale += -e.DeltaY / 2500)"
+            onmousedown="@((MouseEventArgs e) => { if(e.Button == 0) { enablePan(); } })"
+            onmouseup="@((MouseEventArgs e) => { if(e.Button == 0) { disablePan(); } })"
+            onmousemove="@(_panEnabled ? canvasPan : () => {})"
+            id="myCanvas" />
+</div>
+
+<style scoped>
+    #canvas-container {
+        border: 1px solid grey;
+        padding: 50px;
+    }
+
+        #canvas-container > canvas {
+            border: 1px solid grey;
+            width: @(Width);
+            height: @(Height);
+        }
+</style>
+<script>
+    window.drawLine = (xStart, yStart, xEnd, yEnd, color) => {
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+        ctx.beginPath();
+        ctx.moveTo(xStart, yStart);
+        ctx.lineTo(xEnd, yEnd);
+        ctx.strokeStyle = color;
+        ctx.stroke();
+        ctx.fill();
+    }
+    window.clearLines = () => {
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    window.canvasWidth = () => {
+        const canvas = document.getElementById("myCanvas");
+        return canvas.width;
+    }
+    window.canvasHeight = () => {
+        const canvas = document.getElementById("myCanvas");
+        return canvas.height;
+    }
+</script>
+
+@code {
+    [Parameter] public string Width { get; set; } = "700px";
+    [Parameter] public string Height { get; set; } = "800px";
+    [Parameter] public bool ShowGrid { get; set; } = true;
+    [Parameter]
+    public double Scale
+    {
+        get => _scale;
+        set
+        {
+            if (value <= 0 || _isRendering) { return; }
+            _origine.X *= _scale;
+            _origine.Y *= _scale;
+            _scale = value;
+            _origine.X /= _scale;
+            _origine.Y /= _scale;
+            Refresh();
+        }
+    }
+
+    private Point _lastMousePosition;
+    private Point _origine = new Point();
+    private double _scale = 1.00;
+    private List<Line> _lines = new List<Line>();
+    private bool _isRendering = false;
+    private bool _panEnabled = false;
+
+    // override
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await resetOrigine();
+        }
+        base.OnAfterRender(firstRender);
+    }
+
+    // public
+    public async Task Refresh()
+    {
+        _isRendering = true;
+        await IJSRuntime.InvokeVoidAsync("clearLines");
+
+        if (ShowGrid)
+        {
+            await DrawGrid();
+        }
+        foreach (Line l in _lines)
+        {
+            await DrawLine(l, false);
+        }
+        _isRendering = false;
+    }
+    public async Task DrawGrid()
+    {
+        ShowGrid = true;
+
+        double totX = await getCanvasWidth() / _scale;
+        double totY = await getCanvasHeight() / _scale;
+        double delta = await getCanvasWidth() / 10;
+        string color = "#bababa";
+
+        // X
+        for (double x = _origine.X; x < totX; x += delta)
+        {
+            await DrawLine(new Line(new Point(x - _origine.X, -_origine.Y), new Point(x - _origine.X, totY - _origine.Y), color), false);
+        }
+        for (double x = _origine.X - delta; x > 0; x -= delta)
+        {
+            await DrawLine(new Line(new Point(x - _origine.X, -_origine.Y), new Point(x - _origine.X, totY - _origine.Y), color), false);
+        }
+        // Y
+        for (double y = _origine.Y; y < totY; y += delta)
+        {
+            await DrawLine(new Line(new Point(-_origine.X, y - _origine.Y), new Point(totX - _origine.X, y - _origine.Y), color), false);
+        }
+        for (double y = _origine.Y - delta; y > 0; y -= delta)
+        {
+            await DrawLine(new Line(new Point(-_origine.X, y - _origine.Y), new Point(totX - _origine.X, y - _origine.Y), color), false);
+        }
+    }
+    public async Task DrawLine(Line line, bool addToLines = true)
+    {
+        await IJSRuntime.InvokeVoidAsync(
+            "drawLine",
+            (line.PointStart.X + _origine.X) * Scale, (line.PointStart.Y + _origine.Y) * Scale,
+            (line.PointEnd.X + _origine.X) * Scale, (line.PointEnd.Y + _origine.Y) * Scale,
+            line.Color
+        );
+        if (addToLines) { _lines.Add(line); }
+    }
+    public async Task DrawCircle(Point position, double diameter, int nSteps)
+    {
+        double deltaDeg = 360 / nSteps;
+
+        Point prec = null;
+        for (double deg = 0; deg <= 360 + deltaDeg; deg += deltaDeg)
+        {
+            double rad = deg * Math.PI / 180;
+            double sin = Math.Sin(rad);
+            double cos = Math.Cos(rad);
+
+            Point pp = new Point(position.X + cos * diameter / 2.0, position.Y + sin * diameter / 2.0);
+            if (prec != null)
+            {
+                await DrawLine(new Line(prec, pp, "#000000"));
+            }
+
+            prec = pp;
+        }
+    }
+    public async Task Clear()
+    {
+        _lines.Clear();
+        await Refresh();
+    }
+    public async Task Fit()
+    {
+        var points = _lines.Select(l => new[] { l.PointStart, l.PointEnd }).Aggregate((a, b) => a.Union(b).ToArray()).ToList();
+        double maxX = points.Select(p => p.X).Max();
+        double minX = points.Select(p => p.X).Min();
+        double maxY = points.Select(p => p.Y).Max();
+        double minY = points.Select(p => p.Y).Min();
+        //
+
+    }
+
+    // private
+    private async Task resetOrigine()
+    {
+        _origine = new Point(await getCanvasWidth() / Scale / 2.0, await getCanvasHeight() / Scale / 2.0);
+    }
+    private void enablePan()
+    {
+        _panEnabled = true;
+        _lastMousePosition = null;
+        IJSRuntime.InvokeVoidAsync("console.log", "pan attivato");
+        StateHasChanged();
+    }
+    private void disablePan()
+    {
+        _panEnabled = false;
+        _lastMousePosition = null;
+        IJSRuntime.InvokeVoidAsync("console.log", "pan disattivato");
+        StateHasChanged();
+    }
+    private async void canvasPan(MouseEventArgs args)
+    {
+        if (_lastMousePosition != null && !_isRendering)
+        {
+            _origine.X += args.ClientX - _lastMousePosition.X;
+            _origine.Y += args.ClientY - _lastMousePosition.Y;
+            await Refresh();
+        }
+        _lastMousePosition = new Point(args.ClientX, args.ClientY);
+    }
+    private async Task<double> getCanvasWidth()
+    {
+        return await IJSRuntime.InvokeAsync<double>("canvasWidth");
+    }
+    private async Task<double> getCanvasHeight()
+    {
+        return await IJSRuntime.InvokeAsync<double>("canvasHeight");
+    }
+}

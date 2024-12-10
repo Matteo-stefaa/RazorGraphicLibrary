@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "VpQBTyXh/YAcn24KmOy9aqawBQoNCsoJZiOkPTyVg8s=",
+  "Hash": "DJhh+HUdDUxYCsyw0eKVZ1obY+QuFaRhHaP3AKgwge8=",
   "Source": "RazorGraphicLibrary",
   "BasePath": "_content/RazorGraphicLibrary",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

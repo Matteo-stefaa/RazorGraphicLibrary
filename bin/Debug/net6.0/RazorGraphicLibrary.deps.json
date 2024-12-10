@@ -8,43 +8,84 @@
     ".NETCoreApp,Version=v6.0": {
       "RazorGraphicLibrary/1.0.0.4": {
         "dependencies": {
-          "Microsoft.AspNetCore.Components": "6.0.24"
+          "Microsoft.AspNetCore.Components": "6.0.25",
+          "Microsoft.AspNetCore.Components.Web": "6.0.25",
+          "Microsoft.JSInterop": "6.0.25",
+          "SyncFCS14": "1.0.0"
         },
         "runtime": {
           "RazorGraphicLibrary.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Authorization/6.0.24": {
+      "Microsoft.AspNetCore.Authorization/6.0.25": {
         "dependencies": {
-          "Microsoft.AspNetCore.Metadata": "6.0.24",
+          "Microsoft.AspNetCore.Metadata": "6.0.25",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.4",
           "Microsoft.Extensions.Options": "6.0.0"
         },
         "runtime": {
           "lib/net6.0/Microsoft.AspNetCore.Authorization.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.2423.51812"
+            "fileVersion": "6.0.2523.52315"
           }
         }
       },
-      "Microsoft.AspNetCore.Components/6.0.24": {
+      "Microsoft.AspNetCore.Components/6.0.25": {
         "dependencies": {
-          "Microsoft.AspNetCore.Authorization": "6.0.24",
-          "Microsoft.AspNetCore.Components.Analyzers": "6.0.24"
+          "Microsoft.AspNetCore.Authorization": "6.0.25",
+          "Microsoft.AspNetCore.Components.Analyzers": "6.0.25"
         },
         "runtime": {
           "lib/net6.0/Microsoft.AspNetCore.Components.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.2423.51812"
+            "fileVersion": "6.0.2523.52315"
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Analyzers/6.0.24": {},
-      "Microsoft.AspNetCore.Metadata/6.0.24": {
+      "Microsoft.AspNetCore.Components.Analyzers/6.0.25": {},
+      "Microsoft.AspNetCore.Components.Forms/6.0.25": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "6.0.25"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Forms.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.2523.52315"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Web/6.0.25": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "6.0.25",
+          "Microsoft.AspNetCore.Components.Forms": "6.0.25",
+          "Microsoft.Extensions.DependencyInjection": "6.0.1",
+          "Microsoft.JSInterop": "6.0.25",
+          "System.IO.Pipelines": "6.0.3"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Web.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.2523.52315"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Metadata/6.0.25": {
         "runtime": {
           "lib/net6.0/Microsoft.AspNetCore.Metadata.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.2423.51812"
+            "fileVersion": "6.0.2523.52315"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection/6.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.DependencyInjection.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1022.47605"
           }
         }
       },
@@ -87,7 +128,114 @@
           }
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/6.0.0": {}
+      "Microsoft.JSInterop/6.0.25": {
+        "runtime": {
+          "lib/net6.0/Microsoft.JSInterop.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.2523.52315"
+          }
+        }
+      },
+      "System.IO.Pipelines/6.0.3": {
+        "runtime": {
+          "lib/net6.0/System.IO.Pipelines.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.522.21309"
+          }
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
+      "AllBlocksConnessione/1.0.0": {
+        "runtime": {
+          "AllBlocksConnessione.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.2.3"
+          }
+        }
+      },
+      "SyncFCS14/1.0.0": {
+        "dependencies": {
+          "AllBlocksConnessione": "1.0.0"
+        },
+        "runtime": {
+          "SyncFCS14.exe": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "AbkGeneralFunction/1.2.3.2": {
+        "runtime": {
+          "AbkGeneralFunction.dll": {
+            "assemblyVersion": "1.2.3.2",
+            "fileVersion": "1.2.3.2"
+          }
+        }
+      },
+      "MySql.Data/8.0.32.0": {
+        "runtime": {
+          "MySql.Data.dll": {
+            "assemblyVersion": "8.0.32.0",
+            "fileVersion": "8.0.32.1"
+          }
+        }
+      },
+      "Microsoft.Office.Interop.Excel/15.0.0.0": {
+        "runtime": {
+          "Microsoft.Office.Interop.Excel.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.4795.1000"
+          }
+        }
+      },
+      "EPPlus/5.8.6.0": {
+        "runtime": {
+          "EPPlus.dll": {
+            "assemblyVersion": "5.8.6.0",
+            "fileVersion": "5.8.6.0"
+          }
+        }
+      },
+      "Google.Protobuf/3.21.9.0": {
+        "runtime": {
+          "Google.Protobuf.dll": {
+            "assemblyVersion": "3.21.9.0",
+            "fileVersion": "3.21.9.0"
+          }
+        }
+      },
+      "K4os.Compression.LZ4.Streams/1.2.6.0": {
+        "runtime": {
+          "K4os.Compression.LZ4.Streams.dll": {
+            "assemblyVersion": "1.2.6.0",
+            "fileVersion": "1.2.6.0"
+          }
+        }
+      },
+      "BouncyCastle.Crypto/1.9.0.0": {
+        "runtime": {
+          "BouncyCastle.Crypto.dll": {
+            "assemblyVersion": "1.9.0.0",
+            "fileVersion": "1.9.0.1"
+          }
+        }
+      },
+      "K4os.Compression.LZ4/1.2.6.0": {
+        "runtime": {
+          "K4os.Compression.LZ4.dll": {
+            "assemblyVersion": "1.2.6.0",
+            "fileVersion": "1.2.6.0"
+          }
+        }
+      },
+      "K4os.Hash.xxHash/1.0.6.0": {
+        "runtime": {
+          "K4os.Hash.xxHash.dll": {
+            "assemblyVersion": "1.0.6.0",
+            "fileVersion": "1.0.6.0"
+          }
+        }
+      }
     }
   },
   "libraries": {
@@ -96,33 +244,54 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.AspNetCore.Authorization/6.0.24": {
+    "Microsoft.AspNetCore.Authorization/6.0.25": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6wnjTbCPYlfaZ1INOrVzPvpvPXMd11HwyexRCvKUbTTWayQTYhp80YkWSPy9XK+SnKD6HNKzjcAW/eIl1kL7aQ==",
-      "path": "microsoft.aspnetcore.authorization/6.0.24",
-      "hashPath": "microsoft.aspnetcore.authorization.6.0.24.nupkg.sha512"
+      "sha512": "sha512-ULv2oskcPsbG8+4f6PlpdwWOxuuYQ9UDrjOF8Pn4v41z38tNOumllpf6kCqTJUjbSqEPPAcK0hy/6V6xM1rcGA==",
+      "path": "microsoft.aspnetcore.authorization/6.0.25",
+      "hashPath": "microsoft.aspnetcore.authorization.6.0.25.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Components/6.0.24": {
+    "Microsoft.AspNetCore.Components/6.0.25": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ZJyduopEYJ5uFesLudNoY1Rj+rRnZufPvQeHQnPiQUkn/+7X9DHGGQ6eH94lUK6VQVswEKG4xQ78jGuexh+VoA==",
-      "path": "microsoft.aspnetcore.components/6.0.24",
-      "hashPath": "microsoft.aspnetcore.components.6.0.24.nupkg.sha512"
+      "sha512": "sha512-P5kc416U8FxGXIIervW1acwENc5jMYSar31YMDQWbb8/ORN8Ga4n3hr59/gY+epphbPJviUDwax+wI9fY69gfQ==",
+      "path": "microsoft.aspnetcore.components/6.0.25",
+      "hashPath": "microsoft.aspnetcore.components.6.0.25.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Components.Analyzers/6.0.24": {
+    "Microsoft.AspNetCore.Components.Analyzers/6.0.25": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-I09whA8eCL27Y87vC5wJgDhO1RcsJLnK+9KtVkZ1PkZjnkmkgsyPN/3Qc3n/T0S6GxAlDSTsZi9MJ/TqzOOQ+w==",
-      "path": "microsoft.aspnetcore.components.analyzers/6.0.24",
-      "hashPath": "microsoft.aspnetcore.components.analyzers.6.0.24.nupkg.sha512"
+      "sha512": "sha512-nTlYOJcTP7yFZw5TAYU1ryEvZbs6FfuUoqNKMTDnxlTCYtSSsT5mNniQ5Vk+wGFmfF8R/oDv9dE7Q8ya4wCEug==",
+      "path": "microsoft.aspnetcore.components.analyzers/6.0.25",
+      "hashPath": "microsoft.aspnetcore.components.analyzers.6.0.25.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Metadata/6.0.24": {
+    "Microsoft.AspNetCore.Components.Forms/6.0.25": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-4qEDX1v1dQW03zffD43r0fbyU4mKeyppXd8k0qLV4yEnZ3WE34T2UbluP1aN3otLoMfU1QZNY5sDNIlsboANdw==",
-      "path": "microsoft.aspnetcore.metadata/6.0.24",
-      "hashPath": "microsoft.aspnetcore.metadata.6.0.24.nupkg.sha512"
+      "sha512": "sha512-YdO7ajZVU4HOieTQ0THKiqLSHXpE4S10o3sUXXxtSK9FSaiok75sdmbKBFXhl+hEYv0O+BFZRNCR1RRzxFuHUg==",
+      "path": "microsoft.aspnetcore.components.forms/6.0.25",
+      "hashPath": "microsoft.aspnetcore.components.forms.6.0.25.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components.Web/6.0.25": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lhCaEJ+BePwKGp/b5sBgZiy3naAXBT1mbn8oiK97wcy+ugSDWJnZoO4gjtoH2L8WL1zTYIl+6lp212a/qKBemw==",
+      "path": "microsoft.aspnetcore.components.web/6.0.25",
+      "hashPath": "microsoft.aspnetcore.components.web.6.0.25.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Metadata/6.0.25": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-o66f8yH8UXQ7jV3Y03XNplRE+jKhi0NilZgBgYn0gtX0kMHx+HbNHne4jGTCGINvnY8WetYPbIKSXYsM/GFhmw==",
+      "path": "microsoft.aspnetcore.metadata/6.0.25",
+      "hashPath": "microsoft.aspnetcore.metadata.6.0.25.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection/6.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vWXPg3HJQIpZkENn1KWq8SfbqVujVD7S7vIAyFXXqK5xkf1Vho+vG0bLBCHxU36lD1cLLtmGpfYf0B3MYFi9tQ==",
+      "path": "microsoft.extensions.dependencyinjection/6.0.1",
+      "hashPath": "microsoft.extensions.dependencyinjection.6.0.1.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": {
       "type": "package",
@@ -152,12 +321,81 @@
       "path": "microsoft.extensions.primitives/6.0.0",
       "hashPath": "microsoft.extensions.primitives.6.0.0.nupkg.sha512"
     },
+    "Microsoft.JSInterop/6.0.25": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZjSExPW/8RPcnk7hpOnNkevMrenQvm5QgjzUm0/IpSqLk5XY7p7qntB2ibL0ZI8xDNm1S1Ph5+AZI2geUxltRA==",
+      "path": "microsoft.jsinterop/6.0.25",
+      "hashPath": "microsoft.jsinterop.6.0.25.nupkg.sha512"
+    },
+    "System.IO.Pipelines/6.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ryTgF+iFkpGZY1vRQhfCzX0xTdlV3pyaTTqRu2ETbEv+HlV7O6y7hyQURnghNIXvctl5DuZ//Dpks6HdL/Txgw==",
+      "path": "system.io.pipelines/6.0.3",
+      "hashPath": "system.io.pipelines.6.0.3.nupkg.sha512"
+    },
     "System.Runtime.CompilerServices.Unsafe/6.0.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
       "path": "system.runtime.compilerservices.unsafe/6.0.0",
       "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    },
+    "AllBlocksConnessione/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SyncFCS14/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AbkGeneralFunction/1.2.3.2": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MySql.Data/8.0.32.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Office.Interop.Excel/15.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EPPlus/5.8.6.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Google.Protobuf/3.21.9.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "K4os.Compression.LZ4.Streams/1.2.6.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BouncyCastle.Crypto/1.9.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "K4os.Compression.LZ4/1.2.6.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "K4os.Hash.xxHash/1.0.6.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

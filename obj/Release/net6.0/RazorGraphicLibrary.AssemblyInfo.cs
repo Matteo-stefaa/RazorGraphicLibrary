@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RazorGraphicLibrary")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.4")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0.4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0.4+3bcc5e196901d21cf587a3fd80964773c6f14aad")]
 [assembly: System.Reflection.AssemblyProductAttribute("RazorGraphicLibrary")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RazorGraphicLibrary")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.4")]
